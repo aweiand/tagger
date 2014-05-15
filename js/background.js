@@ -11,3 +11,9 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 	    }; break;
 	}
 });
+
+function getGraphics() {
+  chrome.tabs.create({'url': chrome.extension.getURL('/html/graphics.html')}, function(){
+	
+  });
+}

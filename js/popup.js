@@ -1,4 +1,5 @@
-
+// Variavel que armazena a Background.js
+var bg = chrome.extension.getBackgroundPage();
 
 // Botão de Gerar Informações
 $(document).delegate("#CollectInfo", "click", function(){
@@ -24,9 +25,11 @@ $(document).delegate("#CollectInfo", "click", function(){
 			}
 		});
 	});
+
+	bg.getGraphics();
 });
 
 // Botão de Log
-$(document).delegate("#log", "click", function(){
-	chrome.runtime.sendMessage({ action: "logSitesData" });
-});
+// $(document).delegate("#log", "click", function(){
+// 	chrome.runtime.sendMessage({ action: "logSitesData" });
+// });
