@@ -38,6 +38,41 @@ $(document).delegate("#CollectInfo", "click", function(){
 	});
 });
 
+// Botão para coletar os feeds
+$(document).delegate("#CollectFeed", "click", function(){
+	var arr = [];
+
+	$("#listFeed li input").each(function(){
+		site = $.trim($(this).val());
+
+		$.ajax({
+		   url: site,
+		   async: false,
+		   type : "POST",
+		   dataType : "xml",
+		   success: function(result){
+		   		var arraySite = { tag: {} };
+		   		arraySite['domain'] = site;
+		   		arraySite['feed'] 	= $(result);
+		   		arraySite['title'] 	= $(result).find('channel').children().find("title").first().text();
+
+               $(result).find('channel').children().each(function() {
+		        	var cat = $(this).find("category");
+ 		        	$(cat).each(function(){
+                     	if ($(this)[0] != ""){
+							arraySite['tag'][$(this)[0].innerHTML] == null ? arraySite['tag'][$(this)[0].innerHTML] = 1 : arraySite['tag'][$(this)[0].innerHTML]++;
+		        		}
+		        	})
+		        });
+
+		        bg.mergeSiteFeed(arraySite);
+		   }
+		});
+	}).promise().done(function(){
+		bg.getFeedGraphics();
+	});
+})
+
 // Botão para adicionar um site na lista
 $(document).delegate("#btnAddSite", "click", function(){
 	$(this).parent("li").parent("ul").append(	'<li>' +
@@ -63,35 +98,3 @@ function getFavicon(doc){
         }
     })
 }
-
-// Botão para coletar os feeds
-$(document).delegate("#CollectFeed", "click", function(){
-	var arr = [];
-
-	$("#listFeed li input").each(function(){
-		site = $.trim($(this).val());
-
-		$.ajax({
-		   url: site,
-		   async: false,
-		   type : "POST",
-		   dataType : "xml",
-		   success: function(result){
-		   		var arraySite = { tag: {} };
-		   		arraySite['domain'] = site;
-		   		arraySite['title'] 	= $(result).find('channel').children().find("title").text();
-
-		        $(result).find('channel').children().each(function() {
-		        	var cat = $(this).find("category").text();
-		        	if (cat != ""){
-	        			arraySite['tag'][cat] == null ? arraySite['tag'][cat] = 1 : arraySite['tag'][cat]++;;
-	        		}
-		        });
-
-		        bg.mergeSiteFeed(arraySite);
-		   }
-		});
-	}).promise().done(function(){
-		bg.getFeedGraphics();
-	});
-})
