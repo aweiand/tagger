@@ -10,13 +10,87 @@
 	</head>
 	<body style="width: 388px; margin: 5px;">
 		<h4>
-			Adicione os sites para pesquisar....
+			<img src="/pic/icon48.png" />
+			Informacoes de Sites...
 		</h4>
 
-		<textarea id="SitesList" placeholder="Digite os sites separados por ';' (ponto e virgula)">http://zh.clicrbs.com.br/rs/;http://www.uol.com.br/</textarea>
+		<ul class="nav nav-tabs" id="myTab">
+		  <li class="active">
+			<a href="#tags">Tags</a>
+		  </li>
+		  <li>
+		  	<a href="#feeds">Feeds</a>
+		  </li>
+		</ul>
+		 
+		<div class="tab-content">
 
-		<button class="btn btn-info" id="CollectInfo">
-			<i class="icon-ok"></i> Coletar e Gerar Graficos
-		</button>
+	  		<div class="tab-pane active" id="tags">
+				<h4>
+					<img src="/pic/tag.png" width="25"/>
+					Estatisticas de Tags
+				</h4>				
+				<ul id="listSite">
+					<li>
+						<input type="text" name="link" placeholder="Digite o Link" value="http://zh.clicrbs.com.br/rs/" />
+						<button class="btn btn-mini btn-info" id="btnAddSite">
+							<i class="icon-plus"></i>
+						</button>
+					</li>
+					<li>
+						<input type="text" name="link" placeholder="Digite o Link" value="http://www.uol.com.br" />
+						<button class="btn btn-mini btn-danger" id="btnRmSite">
+							<i class="icon-remove"></i>
+						</button>
+					</li>
+					<li>
+						<input type="text" name="link" placeholder="Digite o Link" value="http://www.bbc.co.uk/portuguese/" />
+						<button class="btn btn-mini btn-danger" id="btnRmSite">
+							<i class="icon-remove"></i>
+						</button>
+					</li>			
+				</ul>
+
+				<div style="width: 100%; text-align: center;">
+					<button class="btn btn-info" id="CollectInfo">
+						<i class="icon-ok"></i> Coletar e Gerar Graficos
+					</button>
+				</div>
+			</div>
+
+			<div class="tab-pane" id="feeds">
+				<h4>
+					<img src="/pic/rss.png" width="25" />
+					Estatisticas de Feeds
+				</h4>
+				<ul id="listFeed">
+					<li>
+						<input type="text" name="link" placeholder="Digite o Link" value="https://news.google.com/news/feeds?cf=all&ned=pt-BR_br&hl=pt-BR&output=rss" />
+						<button class="btn btn-mini btn-info" id="btnAddSite">
+							<i class="icon-plus"></i>
+						</button>
+					</li>
+					<li>
+						<input type="text" name="link" placeholder="Digite o Link" value="http://g1.globo.com/dynamo/brasil/rss2.xml" />
+						<button class="btn btn-mini btn-danger" id="btnRmSite">
+							<i class="icon-remove"></i>
+						</button>
+					</li>
+					<li>
+						<input type="text" name="link" placeholder="Digite o Link" value="http://diariogaucho.clicrbs.com.br/rs/ultimas-noticias-rss/" />
+						<button class="btn btn-mini btn-danger" id="btnRmSite">
+							<i class="icon-remove"></i>
+						</button>
+					</li>			
+				</ul>
+
+				<div style="width: 100%; text-align: center;">
+					<button class="btn btn-info" id="CollectFeed">
+						<i class="icon-ok"></i> Coletar e Gerar Graficos
+					</button>
+				</div>				
+			</div>
+
+		</div>
 	</body>
 </html>

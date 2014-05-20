@@ -7,7 +7,10 @@
 	"manifest_version": 2,
 	"content_scripts": [{
 		"matches": ["*://*/*"],
-		"js": ["/vendor/jquery/js/jquery-1.10.2.js", "/vendor/jquery/js/jquery-ui-1.10.4.custom.min.js"],
+		"js": [
+				"/vendor/jquery/js/jquery-1.10.2.js", 
+				"/vendor/jquery/js/jquery-ui-1.10.4.custom.min.js"
+			],
 		"run_at": "document_start",
 		"all_frames": true
 	}],
@@ -15,9 +18,9 @@
 		"default_popup": "/html/popup.html"
 	},
 	"background": {
-		"scripts": ["/js/background.js"],
-		"persistent": true
+		"scripts": ["/js/background.js"]
 	},
+	"content_security_policy": "script-src 'self' https://www.google.com; object-src 'self'",
 	"icons": { 
 			"16": "/pic/icon16.png",
            	"48": "/pic/icon48.png",
