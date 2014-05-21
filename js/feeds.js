@@ -1,6 +1,9 @@
 // Variavel que armazena a Background.js
 var bg = chrome.extension.getBackgroundPage();
 
+var fill   = d3.scale.category20();
+var locale = $("body")[0];
+
 // Carregando a API de Feeds do Google -->> 
 //			https://developers.google.com/feed/v1/devguide
 //			https://code.google.com/apis/ajax/playground/#load_feed
@@ -8,43 +11,45 @@ google.load("feeds", "1");
 
 // É executado cada vez que a página é carregada
 document.addEventListener('DOMContentLoaded', function () {
-	$("body").css({ height: $(window).height() })
+	$("body").css({ height: $(window).height() });
+	var nombre = 0;
 
 	$(bg.FeedsData).each(function(){
-		var site = $(this)[0]['domain'].split("/")[2];
+		var site = this.domain.split("/")[2];
 
-    	var str = "<div class='card'>" +
+    	var str = "<div class='card' id='" + nombre + "' data-domain='" + this.domain + "'>" +
 						"<h4 style='text-align:center;'>" +
-								$(this)[0]['title'] +
+								this.title +
 						"</h4>" +    		
 						"<h3 style='text-align:center;'>" +
-							"<a href='http://" + site + "' title='" + $(this)[0]['domain'] + "' target='_new'>" +
+							"<a href='http://" + site + "' title='" + this.domain + "' target='_new'>" +
 								"<b>" + site + "</b>" +
 							"</a>" +
 						"</h3>" +
 						"<h5 style='text-align:center;'>" +
 							"Feed: " +
-							"<a href='" + $(this)[0]['domain'] + "' title='" + $(this)[0]['domain'] + "' target='_new'>" +
-								$(this)[0]['domain'].substring(0,30) + "..." +
+							"<a href='" + this.domain + "' title='" + this.domain + "' target='_new'>" +
+								this.domain.substring(0,30) + "..." +
 							"</a>" +
-						"</h5>" +						
-						"<ul>";
+						"</h5>" +
+						"<h5 style='text-align: center; width: 100%; cursor: pointer;' class='label label-info expand'>Clique para expandir os resultados</h5>" +				
+						"<ul style='display: none;'>";
 
-		for (i in $(this)[0].tag){
+		for (i in this.tag){
 			var tag = "";
 			var style = "";
 
 			i.length > 20 ? tag = i.substring(0,20) + "..." : tag = i;
 
-			if ($(this)[0].tag[i] > 1){
-				tag		= $(this)[0].tag[i] + " " + tag;
+			if (this.tag[i] > 1){
+				tag		= this.tag[i] + " " + tag;
 				style 	= "; color: #FFFFFF; font-size: 13px; ";
 			} else {
 				style	= "; color: #C7C7C7;";
 			}
 
 			str+= 			"<li>" +
-								"<span data-tag='" + i + "' data-domain='" + $(this)[0]['domain'] + "' " +
+								"<span data-tag='" + i + "' data-domain='" + this.domain + "' " +
 										" class='badge badge-info' title='" + i + "' " +
 										" style='cursor: pointer; " + style + "''>" +
 									tag + 
@@ -55,13 +60,25 @@ document.addEventListener('DOMContentLoaded', function () {
 					"</div>";
 
 		$("#dump").append(str);
+
+		locale = $("#"+nombre+">h5")[0];
+		d3.layout.cloud().size([300, 300])
+			.words(mapFeedObj(this.tag))
+			.padding(5)
+			.rotate(function() { return ~~(Math.random() * 2) * 90; })
+			.font("Impact")
+			.fontSize(function(d) { return d.size; })
+			.on("end", draw)
+			.start();		
+
+		nombre++;
 	});
 
 });
 
 // Click na tag
 $(document).delegate("span[data-tag]", "click", function(){
-	var domain 	= $(this).data("domain");
+	var domain 	= $(this).closest('div').data("domain");
 	var tag 	= $(this).data("tag");
 
 	$(bg.FeedsData).each(function(){
@@ -136,6 +153,12 @@ $(document).delegate("#_fullscr", "click", function(){
 	return false;
 })
 
+$(document).delegate(".expand", "click", function(){
+	$(this).next("ul").slideToggle();
+	$("body").css({ height: $(window).height() });
+	return false;
+})
+
 // Função que mostra o popup com os itens do RSS da tag especificada
 function showFeedFilter(domain, tag) {
 	var feed = new google.feeds.Feed(domain);
@@ -170,4 +193,47 @@ function showFeedFilter(domain, tag) {
 			showLoad(html);
 		}
 	});
+}
+
+// Função da biblioteca D3.js para criar a tag cloud
+function draw(words) {
+	d3.select(locale).append("svg")
+	    .attr("width", 300)
+	    .attr("height", 300)
+		.append("g")
+		.attr("transform", "translate(150,150)")
+		.selectAll("text")
+		.data(words)
+		.enter().append("text")
+		.style("font-size", function(d) { return d.size + "px"; })
+		.style("font-family", "Impact")
+		.style("cursor", "pointer")
+		.style("fill", function(d, i) { return fill(i); })
+		.attr("text-anchor", "middle")
+		.attr("transform", function(d) {
+	  		return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+	    })
+	    .text(function(d) { return d.text; })
+		.on("click", function(tag) {
+			var domain 	= $(this).closest("svg").closest(".card").data("domain");
+			$(bg.FeedsData).each(function(){
+				if (this.domain == domain){
+					showFeedFilter(domain, tag.text);
+				}
+			})
+		})
+}
+
+// Função para mapear os Feeds que estão em um objeto em um Array
+function mapFeedObj(tags){
+	var arr2 = [];
+
+	for (k in tags){
+		arr2.push({
+			text: k,
+			size: (10 + tags[k])
+		});
+	}
+
+	return arr2;
 }
