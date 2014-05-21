@@ -63,83 +63,15 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).delegate("span[data-tag]", "click", function(){
 	var domain 	= $(this).data("domain");
 	var tag 	= $(this).data("tag");
-	// var html 	= {};
-	// var i 		= 0;
 
 	$(bg.FeedsData).each(function(){
 		if ($(this)[0]['domain'] == domain){
-			// var feed = $(this)[0]['feed'];
-
-			// feed.find('channel').children().each(function() {
-			// 	var cat = $(this).find("category");
-	  		//		$(cat).each(function(){
-			// 		if ($(this)[0].innerHTML == tag){
-			// 			html[i] = "<div>" + $(this).parent("item").html() + "</div>";
-			// 			i++;
-			// 		}
-			// 	})
-			// });
-
-			// montaHTML(html);
 			showFeedFilter(domain, tag);
 
 			return false;
 		}
 	})
 });
-
-// Função para montar o HTML do Feed quando clicado na TAG
-// function montaHTML(objeto){
-// 	var html = "";
-// 	for (i in objeto){
-// 		// console.log(objeto[i]);
-// 		// html += "<p>" + objeto[i] + "</p><hr />";
-
-// 		html+= "<div id='news'>";
-// 		html+= $(objeto[i]).text(function(i,f){
-//     		$(this).children().each(function(){
-//     			// console.log($(this)[0].nodeName);
-// 			    switch ($(this)[0].nodeName){
-// 			    	case "TITLE": {
-// 			        	$(this).replaceWith("<h3>" + $(this)[0].innerHTML + "</h3>")
-// 			        }; break;
-
-// 			        case "CATEGORY": {
-// 			        	$(this).replaceWith("<span class='badge badge-info' style='margin: 10px;'>" + $(this)[0].innerHTML + "</span>")
-// 			        }; break;
-
-// 			        case "DESCRIPTION": {
-// 			        	$(this).replaceWith("<p class='content'>" + $(this)[0].innerHTML + "</p>")
-// 			        }; break;
-
-// 			        case "PUBDATE": {
-// 			        	$(this).replaceWith("<p class='badge' style='margin: 10px;'>" + $(this)[0].innerHTML + "</p>")
-// 			        }; break;
-
-// 			        case "LINK": {
-// 			        	$(this).replaceWith("<a href='#'>" + $(this)[0].innerHTML + "</a>")
-// 			        }; break;	
-
-// 					case "SOURCE": {
-// 			        	$(this).replaceWith("");
-// 			        }; break;				        
-
-// 			        default : {
-// 			        	// console.log($(this)[0]);
-// 			        	$(this).replaceWith("");
-// 			        }		        
-// 			    }
-// 		   	})
-// 		}).html();
-
-// 		html+= "</div><hr />";
-// 	}
-
-// 	showLoad(html);
-
-// 	return false;
-// }
-
 
 // Mostra o Load preto com branco na tela
 function showLoad(text) {
@@ -204,6 +136,7 @@ $(document).delegate("#_fullscr", "click", function(){
 	return false;
 })
 
+// Função que mostra o popup com os itens do RSS da tag especificada
 function showFeedFilter(domain, tag) {
 	var feed = new google.feeds.Feed(domain);
 	feed.setNumEntries(99);

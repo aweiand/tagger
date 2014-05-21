@@ -1,7 +1,9 @@
 {
-	"name": "Info Sites",
-	"description": "Gera informação estatística acerca dos links informados.",
-	"version": "0.1",
+	"name": "Tagger",
+	"short_name": "Tagger",
+	"description": "Visualização dinâmica e diferenciada de páginas e feeds.",
+	"version": "0.5",
+	"author": "Augusto Weiand<guto.weiand@gmail.com>",
 	"permissions": ["<all_urls>"],
 	"options_page": "/html/options.html",
 	"manifest_version": 2,
@@ -25,5 +27,6 @@
 			"16": "/pic/icon16.png",
            	"48": "/pic/icon48.png",
           	"128": "/pic/icon128.png"
-	}
+	},
+	"offline_enabled": false
 }
