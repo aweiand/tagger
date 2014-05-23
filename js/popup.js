@@ -54,7 +54,7 @@ $(document).delegate("#CollectFeed", "click", function(){
 		   		var arraySite = { tag: {} };
 		   		arraySite['domain'] = site;
 		   		arraySite['feed'] 	= $(result);
-		   		arraySite['title'] 	= $(result).find('channel').children().find("title").first().text();
+		   		arraySite['title'] 	= $(result).find('channel').find("title").first().text();
 
                $(result).find('channel').children().each(function() {
 		        	var cat = $(this).find("category");

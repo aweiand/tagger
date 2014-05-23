@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	$("body").css({ height: $(window).height() })
 	
 	$(bg.SitesData).each(function(){
-		var site = $(this)[0]['domain'].split("/")[2];
+		var site 	= $(this)[0]['domain'].split("/")[2];
+		var tot 	= (this.img + this.p + this.table) / 100;
+		var lImg 	= this.img * 10 * tot;
+		var lP 		= this.p * 10 * tot;
+		var lTable 	= this.table * 10 * tot;
 
     	$("#dump").append("<div class='card'>" +
     							"<h4 style='text-align:center;'>" +
@@ -20,24 +24,24 @@ document.addEventListener('DOMContentLoaded', function () {
 								"<ul>" +
 	    							"<li>" +
 	    								"<span class='badge badge-info'>" +
-	    									"Imagen(s): " + $(this)[0]['img'] +
+	    									"Imagen(s): " + this.img +
     									"</span>" +
 									"</li>" + 
 	    							"<li>" +
 	    								"<span class='badge badge-info'>" +
-	    									"Paragrafo(s): " + $(this)[0]['p'] + 
+	    									"Paragrafo(s): " + this.p + 
     									"</span>" +
 									"</li>" +
 	    							"<li>" +
 	    								"<span class='badge badge-info'>" +
-	    									"Tabela(s): " + $(this)[0]['table'] + 
+	    									"Tabela(s): " + this.table + 
     									"</span>" +
 									"</li>" +									
 	    						"</ul>" +
-	    						"<div>" +
-	    							"<img src='/pic/img.png' title='"+ $(this)[0]['img'] +"' style='width:"+ $(this)[0]['img'] +"%' />" +
-	    							"<img src='/pic/table.png' title='"+ $(this)[0]['table'] +"' style='width:"+ $(this)[0]['table'] +"%' />" +
-	    							"<img src='/pic/p.png' title='"+ $(this)[0]['p'] +"' style='width:"+ $(this)[0]['p'] +"%' />" +
+	    						"<div style='float: left; width: 100%; height 100px;'>" +
+	    							"<img src='/pic/img.svg' title='"+ this.img +" Tags IMG encontradas no site' style='width:"+ lImg +"%' />" +
+	    							"<img src='/pic/p.svg' title='"+ this.p +" Tags P encontradas no site' style='width:"+ lP +"%' />" +
+	    							"<img src='/pic/table.svg' title='"+ this.table +" Tags TABLE encontradas no site' style='width:"+ lTable +"%' />" +
 	    						"</div>" +
     						"</div>");
 	});

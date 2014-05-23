@@ -43,14 +43,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			if (this.tag[i] > 1){
 				tag		= this.tag[i] + " " + tag;
-				style 	= "; color: #FFFFFF; font-size: 13px; ";
 			} else {
 				style	= "; color: #C7C7C7;";
 			}
 
+			if (this.tag[i] < 2){
+				style 	= "; color: #CCCCCC; font-size: 13px; ";
+			} else if (this.tag[i] >= 2 && this.tag[i] < 4){
+				style 	= "; color: #3A87AD; font-size: 13px; ";
+			} else if (this.tag[i] >= 4){
+				style 	= "; color: #EC4949; font-size: 13px; ";
+			}
+
 			str+= 			"<li>" +
 								"<span data-tag='" + i + "' data-domain='" + this.domain + "' " +
-										" class='badge badge-info' title='" + i + "' " +
+										" class='badge badge-inverse' title='" + i + "' " +
 										" style='cursor: pointer; " + style + "''>" +
 									tag + 
 								"</span>" +
@@ -208,7 +215,7 @@ function draw(words) {
 		.style("font-size", function(d) { return d.size + "px"; })
 		.style("font-family", "Impact")
 		.style("cursor", "pointer")
-		.style("fill", function(d, i) { return fill(i); })
+		.style("fill", function(d, i) { return d.fill; })
 		.attr("text-anchor", "middle")
 		.attr("transform", function(d) {
 	  		return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
@@ -227,11 +234,21 @@ function draw(words) {
 // Função para mapear os Feeds que estão em um objeto em um Array
 function mapFeedObj(tags){
 	var arr2 = [];
+	var fill = "#CCCCCC;";
 
 	for (k in tags){
+		if (tags[k] < 2){
+			fill = "#CCCCCC";
+		} else if (tags[k] >= 2 && tags[k] < 4){
+			fill = "#3A87AD";
+		} else if (tags[k] >= 4){
+			fill = "#EC4949";
+		}
+
 		arr2.push({
 			text: k,
-			size: (10 + tags[k])
+			size: (10 + tags[k]),
+			fill: fill
 		});
 	}
 

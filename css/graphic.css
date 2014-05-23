@@ -36,3 +36,13 @@ body {
 	margin-right: 10px;
 	margin-bottom: 20px;
 }
+
+.card div {
+	border: 1px solid #C7C7C7;
+}
+
+.card div img {
+	margin: 5px;
+	float: left;
+	max-width: 45%;
+}
