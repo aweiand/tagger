@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Botão de Gerar Informações
 $(document).delegate("#CollectInfo", "click", function(){
+	bg.SitesData = [];
 	$("#listSite li input").each(function(){
 		site = $.trim($(this).val());
 
@@ -27,6 +28,7 @@ $(document).delegate("#CollectInfo", "click", function(){
 				// arraySite['icon']	= getFavicon($(result)) ? getFavicon($(result)) : result.match("<link rel=\"shortcut.*? href=\"(.*?.ico)")[1]+".ico";
 
 				arraySite['p']		= $(result).find('p').length;
+				arraySite['a']		= $(result).find('a').length;
 				arraySite['img']	= $(result).find('img').length;
 				arraySite['table']	= $(result).find('table').length;
 
@@ -40,6 +42,7 @@ $(document).delegate("#CollectInfo", "click", function(){
 
 // Botão para coletar os feeds
 $(document).delegate("#CollectFeed", "click", function(){
+	bg.FeedsData = [];
 	var arr = [];
 
 	$("#listFeed li input").each(function(){
