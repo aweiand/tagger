@@ -17,6 +17,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
         	} else {
         		SitesData.push(msg.site);
         	}
+
     	}; break;
 	}
 });

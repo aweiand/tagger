@@ -4,7 +4,7 @@
 	"description": "Visualização dinâmica e diferenciada de páginas e feeds.",
 	"version": "0.5",
 	"author": "Augusto Weiand<guto.weiand@gmail.com>",
-	"permissions": ["<all_urls>"],
+	"permissions": ["<all_urls>", "storage"],
 	"options_page": "/html/options.html",
 	"manifest_version": 2,
 	"content_scripts": [{

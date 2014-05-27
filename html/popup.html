@@ -36,28 +36,34 @@
 					Estatísticas de Tags
 				</h4>				
 				<ul id="listSite">
-					<li>
-						<input type="text" name="link" placeholder="Digite o Link" value="http://zh.clicrbs.com.br/rs/" />
-						<button class="btn btn-mini btn-info" id="btnAddSite">
+					<li class="first">
+						<input type="text" name="link" placeholder="Digite o Link" value="" />
+						<button class="btn btn-mini btn-info" id="btnAddSite" title="Adicionar">
 							<i class="icon-plus"></i>
 						</button>
 					</li>
 					<li>
+						<input type="text" name="link" placeholder="Digite o Link" value="http://zh.clicrbs.com.br/rs/" />
+						<button class="btn btn-mini btn-danger" id="btnRmSite" title="Remover">
+							<i class="icon-remove"></i>
+						</button>
+					</li>					
+					<li>
 						<input type="text" name="link" placeholder="Digite o Link" value="http://www.w3schools.com/tags/tag_table.asp" />
-						<button class="btn btn-mini btn-danger" id="btnRmSite">
+						<button class="btn btn-mini btn-danger" id="btnRmSite" title="Remover">
 							<i class="icon-remove"></i>
 						</button>
 					</li>
 					<li>
 						<input type="text" name="link" placeholder="Digite o Link" value="http://www.bbc.co.uk/portuguese/" />
-						<button class="btn btn-mini btn-danger" id="btnRmSite">
+						<button class="btn btn-mini btn-danger" id="btnRmSite" title="Remover">
 							<i class="icon-remove"></i>
 						</button>
 					</li>			
 				</ul>
 
 				<div style="width: 100%; text-align: center;">
-					<button class="btn btn-info" id="CollectInfo">
+					<button class="btn btn-info" id="CollectInfo" title="Coletar e Gerar Gráficos">
 						<i class="icon-ok"></i> Coletar e Gerar Gráficos
 					</button>
 				</div>
@@ -69,28 +75,34 @@
 					Estatísticas de Feeds
 				</h4>
 				<ul id="listFeed">
-					<li>
-						<input type="text" name="link" placeholder="Digite o Link" value="https://news.google.com/news/feeds?cf=all&ned=pt-BR_br&hl=pt-BR&output=rss" />
-						<button class="btn btn-mini btn-info" id="btnAddSite">
+					<li class="first">
+						<input type="text" name="link" placeholder="Digite o Link" value="" />
+						<button class="btn btn-mini btn-info" id="btnAddSite" title="Adicionar">
 							<i class="icon-plus"></i>
 						</button>
 					</li>
 					<li>
+						<input type="text" name="link" placeholder="Digite o Link" value="https://news.google.com/news/feeds?cf=all&ned=pt-BR_br&hl=pt-BR&output=rss" />
+						<button class="btn btn-mini btn-danger" id="btnRmSite" title="Remover">
+							<i class="icon-remove"></i>
+						</button>
+					</li>
+					<li>
 						<input type="text" name="link" placeholder="Digite o Link" value="http://g1.globo.com/dynamo/brasil/rss2.xml" />
-						<button class="btn btn-mini btn-danger" id="btnRmSite">
+						<button class="btn btn-mini btn-danger" id="btnRmSite" title="Remover">
 							<i class="icon-remove"></i>
 						</button>
 					</li>
 					<li>
 						<input type="text" name="link" placeholder="Digite o Link" value="http://diariogaucho.clicrbs.com.br/rs/ultimas-noticias-rss/" />
-						<button class="btn btn-mini btn-danger" id="btnRmSite">
+						<button class="btn btn-mini btn-danger" id="btnRmSite" title="Remover">
 							<i class="icon-remove"></i>
 						</button>
 					</li>			
 				</ul>
 
 				<div style="width: 100%; text-align: center;">
-					<button class="btn btn-info" id="CollectFeed">
+					<button class="btn btn-info" id="CollectFeed" title="Coletar e Gerar Gráficos">
 						<i class="icon-ok"></i> Coletar e Gerar Gráficos
 					</button>
 				</div>				

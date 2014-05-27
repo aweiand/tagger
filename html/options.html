@@ -14,9 +14,53 @@
 		<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">        
 		<link rel="stylesheet" type="text/css" href="/css/graphic.css">
     </head>
-    <body> 
-        <h3 style='text-align: center;'>
-        	<img src='/pic/construcao.png' />
-        </h3>
+    <body class='options'> 
+        <h4>
+            <img src="/pic/icon48.png" />
+            Informações de Sites...
+        </h4>
+        <hr />
+
+        <fieldset>
+            <legend style='text-align: center;'>
+                <img src="/pic/tag.png" width="25"/>
+            	Sites Preferidos
+            </legend>
+
+            <ul id="links" style='float: left; margin: 0 auto; width: 100%;'>
+                <li>
+                    <button class="btn btn-mini btn-info" id="btnAddSite">
+                        <i class="icon-plus"></i> Adicionar mais um site
+                    </button>
+                </li>
+            </ul>
+
+            <button class="btn btn-info" id="btnSaveDomain">
+                <i class="icon-check"></i>
+                Salvar
+            </button>
+
+        </fieldset>
+
+        <fieldset>
+            <legend style='text-align: center;'>
+                <img src="/pic/rss.png" width="25" />
+                Feeds Preferidos
+            </legend>
+
+            <ul id="feeds" style='float: left; margin: 0 auto; width: 100%;'>
+                <li>
+                    <button class="btn btn-mini btn-info" id="btnAddSite">
+                        <i class="icon-plus"></i> Adicionar mais um feed
+                    </button>
+                </li>
+            </ul>
+
+            <button class="btn btn-info" id="btnSaveFeed">
+                <i class="icon-check"></i>
+                Salvar
+            </button>
+
+        </fieldset>        
     </body>
 </html>
